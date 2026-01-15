@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+
+	<select id="idCheck" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*) FROM member WHERE id = #{id}
+	</select>
+	
+	<insert id="addMember" parameterType="com.mbc.pro.dto.MemberDto">
+		INSERT INTO member (id, pw, name, email, auth)
+		VALUES (#{id}, #{pw}, #{name}, #{email}, 3)
+	</insert>
+	
+	<select id="login" parameterType="com.mbc.pro.dto.MemberDto" resultType="com.mbc.pro.dto.MemberDto">
+		SELECT id, name, email, auth
+		FROM member
+		WHERE id = #{id} AND pw = #{pw}
+	</select>
+
+</mapper>

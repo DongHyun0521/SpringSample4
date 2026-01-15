@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BbsComment">
+	
+	<insert id="insertComment" parameterType="com.mbc.pro.dto.BbsComment">
+		INSERT INTO bbsComment (id, content, wdate, bbsSeq)
+		VALUES (#{id}, #{content}, NOW(), #{bbsSeq})
+	</insert>
+	
+	<select id="getAllBbsComment" parameterType="Integer" resultType="com.mbc.pro.dto.BbsComment">
+		SELECT seq, bbsSeq, id, content, wdate
+		FROM bbsComment
+		WHERE bbsSeq = #{bbsSeq}
+		ORDER BY seq
+	</select>
+
+</mapper>

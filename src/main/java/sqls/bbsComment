@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS bbsComment;
+
+CREATE TABLE bbsComment (
+    seq SERIAL PRIMARY KEY,
+    id VARCHAR(50) NOT NULL,
+    content VARCHAR(1000) NOT NULL,
+    wdate TIMESTAMP DEFAULT NOW(),
+    bbsSeq INTEGER NOT NULL
+);
+
+ALTER TABLE bbsComment
+ADD FOREIGN KEY(id) REFERENCES member(id);
+
+ALTER TABLE bbsComment
+ADD FOREIGN KEY(bbsSeq) REFERENCES bbs(seq);
